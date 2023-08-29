@@ -3,7 +3,7 @@ set -e
 
 cd "$(dirname "$0")/../"
 
-docker-compose up -d workspace
-docker-compose exec -T workspace go mod download
+docker compose up -d workspace
+docker compose exec -T workspace go mod download
 ./scripts/build.sh
-docker-compose up -d
+docker compose up -d

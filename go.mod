@@ -1,4 +1,4 @@
-module github.com/itsalex/sentry-mattermost-sidecar
+module github.com/FscoreLab/sentry-mattermost-sidecar
 
 go 1.17
 

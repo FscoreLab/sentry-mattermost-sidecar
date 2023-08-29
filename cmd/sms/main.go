@@ -45,6 +45,7 @@ func main() {
 
 		postBody, err := json.Marshal(map[string]interface{}{
 			"channel": channel,
+			"text": ":grozny_ebaka:",
 			"attachments": []interface{}{
 				map[string]interface{}{
 					"title":       title,

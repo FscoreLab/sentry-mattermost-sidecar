@@ -8,7 +8,8 @@ curl --location --request POST 'localhost:1323/admin-console' \
 --data-raw '{
     "event": {
         "title": "customTitle",
-        "environment": "production"
+        "environment": "production",
+        "request": {"headers": {"Research-Source": "kacher loh"}}
     },
     "url": "customUrl",
     "culprit": "customCulprit",

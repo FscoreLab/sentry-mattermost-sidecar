@@ -42,10 +42,12 @@ func main() {
 		}
 		jsonStringData := string(jsonByteData)
 		title := gjson.Get(jsonStringData, "event.title").String()
+		
+		source := gjson.Get(jsonStringData, "event.request.headers.Research-Source").String()
 
 		postBody, err := json.Marshal(map[string]interface{}{
 			"channel": channel,
-			"text": ":grozny_ebaka:",
+			"text": ":beda::beda::beda::beda::beda::beda::beda::beda::beda::beda:",
 			"attachments": []interface{}{
 				map[string]interface{}{
 					"title":       title,
@@ -57,18 +59,13 @@ func main() {
 					"fields": []interface{}{
 						map[string]interface{}{
 							"short": false,
-							"title": "Culprit",
-							"value": gjson.Get(jsonStringData, "culprit").String(),
-						},
-						map[string]interface{}{
-							"short": false,
-							"title": "Project",
-							"value": gjson.Get(jsonStringData, "project_slug").String(),
-						},
-						map[string]interface{}{
-							"short": false,
 							"title": "Environment",
 							"value": gjson.Get(jsonStringData, "event.environment").String(),
+						},
+						map[string]interface{}{
+							"short": false,
+							"title": "Source",
+							"value": source,
 						},
 					},
 				},

@@ -9,7 +9,7 @@ curl --location --request POST 'localhost:1323/admin-console' \
     "event": {
         "title": "customTitle",
         "environment": "production",
-        "request": {"headers": {"Research-Source": "kacher loh"}}
+        "contexts": {"Research Source": {"research_source": "kacher loh"}}
     },
     "url": "customUrl",
     "culprit": "customCulprit",

@@ -43,7 +43,7 @@ func main() {
 		jsonStringData := string(jsonByteData)
 		title := gjson.Get(jsonStringData, "event.title").String()
 		
-		source := gjson.Get(jsonStringData, "event.request.headers.Research-Source").String()
+		source := gjson.Get(jsonStringData, "event.contexts.Research Source.research_source").String()
 
 		postBody, err := json.Marshal(map[string]interface{}{
 			"channel": channel,

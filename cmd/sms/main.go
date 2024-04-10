@@ -44,6 +44,13 @@ func main() {
 		title := gjson.Get(jsonStringData, "event.title").String()
 		
 		source := gjson.Get(jsonStringData, "event.contexts.Research Source.research_source").String()
+		scheme := gjson.Get(jsonStringData, "event.contexts.Customer Scheme.customer_scheme").String()
+		name := gjson.Get(jsonStringData, "event.contexts.Customer Name.customer_name").String()
+		if source == "unknown" {
+			customer_info := strings.Join([]string{scheme, name}, "\n")
+		} else {
+			customer_info := source
+		}
 
 		postBody, err := json.Marshal(map[string]interface{}{
 			"channel": channel,
@@ -64,8 +71,8 @@ func main() {
 						},
 						map[string]interface{}{
 							"short": false,
-							"title": "Source",
-							"value": source,
+							"title": "Customer Info",
+							"value": customer_info,
 						},
 					},
 				},

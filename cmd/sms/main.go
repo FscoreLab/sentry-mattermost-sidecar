@@ -44,7 +44,7 @@ func main() {
 		jsonStringData := string(jsonByteData)
 		// log.Printf("The value of JSON is: %s", jsonStringData)
 		title := gjson.Get(jsonStringData, "event.title").String()
-		
+
 		var customer_info string
 		source := gjson.Get(jsonStringData, "event.contexts.Research Source.research_source").String()
 		scheme := gjson.Get(jsonStringData, "event.contexts.Customer Scheme.customer_scheme").String()
@@ -64,9 +64,17 @@ func main() {
 			}
 		}
 
+		project_name := gjson.Get(jsonStringData, "project").String()
+		var alert_text string 
+		if project_name == "breastcancer" {
+			alert_text = ":beda::beda::beda::beda::beda::beda::beda::beda::beda::beda:"
+		} else {
+			alert_text = ":grozny_ebaka:"
+		}
+
 		postBody, err := json.Marshal(map[string]interface{}{
 			"channel": channel,
-			"text": ":beda::beda::beda::beda::beda::beda::beda::beda::beda::beda:",
+			"text": alert_text,
 			"attachments": []interface{}{
 				map[string]interface{}{
 					"title":       title,

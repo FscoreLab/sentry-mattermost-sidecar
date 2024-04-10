@@ -42,7 +42,7 @@ func main() {
 			log.Fatalf("Error reading body: %v", err)
 		}
 		jsonStringData := string(jsonByteData)
-		log.Printf("The value of JSON is: %s", jsonStringData)
+		// log.Printf("The value of JSON is: %s", jsonStringData)
 		title := gjson.Get(jsonStringData, "event.title").String()
 		
 		var customer_info string

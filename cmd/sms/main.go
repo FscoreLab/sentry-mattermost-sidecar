@@ -49,9 +49,9 @@ func main() {
 		scheme := gjson.Get(jsonStringData, "event.contexts.Customer Scheme.customer_scheme").String()
 		name := gjson.Get(jsonStringData, "event.contexts.Customer Name.customer_name").String()
 		if source == "unknown" || source == "" {
-			customer_info := strings.Join([]string{scheme, name}, "\n")
+			customer_info = strings.Join([]string{scheme, name}, "\n")
 		} else {
-			customer_info := source
+			customer_info = source
 		}
 
 		postBody, err := json.Marshal(map[string]interface{}{

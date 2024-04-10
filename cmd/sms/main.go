@@ -54,7 +54,15 @@ func main() {
 		} else {
 			customer_info = source
 		}
-		study_uid := gjson.Get(jsonData, "event.request.headers.#(0=='Study-Instance-Uid').1")
+		headers := gjson.Get(jsonStringData, "event.request.headers").Array()
+		var study_uid string
+		for _, header := range headers {
+			headerArray := header.Array()
+			if headerArray[0].String() == "Study-Instance-Uid" {
+				study_uid = headerArray[1].String()
+				break
+			}
+		}
 
 		postBody, err := json.Marshal(map[string]interface{}{
 			"channel": channel,
@@ -64,8 +72,8 @@ func main() {
 					"title":       title,
 					"fallback":    title,
 					"color":       "#FF0000",
-					"author_name": "Sentry",
-					"author_icon": "https://assets.stickpng.com/images/58482eedcef1014c0b5e4a76.png",
+					"author_name": "Leshtry",
+					"author_icon": "https://i.ibb.co/QPz299J/photo-2023-12-17-00-34-13.jpg",
 					"title_link":  gjson.Get(jsonStringData, "url").String(),
 					"fields": []interface{}{
 						map[string]interface{}{

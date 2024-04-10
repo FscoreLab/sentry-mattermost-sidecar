@@ -54,9 +54,9 @@ func main() {
 		} else {
 			customer_info = source
 		}
-		study_uid := gjson.Get(jsonStringData, "event.contexts.Dicom Ids.StudyInstanceUid.L.CC").String()
+		study_uid := gjson.Get(jsonStringData, "event.contexts.Dicom IDs.StudyInstanceUid.L.CC").String()
 		if study_uid == "" {
-			study_uid := gjson.Get(jsonStringData, "event.contexts.Dicom Ids.StudyInstanceUid.R.CC").String()
+			study_uid = gjson.Get(jsonStringData, "event.contexts.Dicom IDs.StudyInstanceUid.R.CC").String()
 		}
 
 		postBody, err := json.Marshal(map[string]interface{}{

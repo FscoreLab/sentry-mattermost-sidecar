@@ -42,6 +42,7 @@ func main() {
 			log.Fatalf("Error reading body: %v", err)
 		}
 		jsonStringData := string(jsonByteData)
+		log.Printf("The value of JSON is: %s", jsonStringData)
 		title := gjson.Get(jsonStringData, "event.title").String()
 		
 		var customer_info string
@@ -52,6 +53,10 @@ func main() {
 			customer_info = strings.Join([]string{scheme, name}, "\n")
 		} else {
 			customer_info = source
+		}
+		study_uid := gjson.Get(jsonStringData, "event.contexts.Dicom Ids.StudyInstanceUid.L.CC").String()
+		if study_uid == "" {
+			study_uid := gjson.Get(jsonStringData, "event.contexts.Dicom Ids.StudyInstanceUid.R.CC").String()
 		}
 
 		postBody, err := json.Marshal(map[string]interface{}{
@@ -75,6 +80,11 @@ func main() {
 							"short": false,
 							"title": "Customer Info",
 							"value": customer_info,
+						},
+						map[string]interface{}{
+							"short": false,
+							"title": "StudyInstanceUID",
+							"value": study_uid,
 						},
 					},
 				},

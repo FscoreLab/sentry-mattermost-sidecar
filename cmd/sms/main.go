@@ -43,10 +43,11 @@ func main() {
 		jsonStringData := string(jsonByteData)
 		title := gjson.Get(jsonStringData, "event.title").String()
 		
+		var customer_info string
 		source := gjson.Get(jsonStringData, "event.contexts.Research Source.research_source").String()
 		scheme := gjson.Get(jsonStringData, "event.contexts.Customer Scheme.customer_scheme").String()
 		name := gjson.Get(jsonStringData, "event.contexts.Customer Name.customer_name").String()
-		if source == "unknown" {
+		if source == "unknown" || source == "" {
 			customer_info := strings.Join([]string{scheme, name}, "\n")
 		} else {
 			customer_info := source
